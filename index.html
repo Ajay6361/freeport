@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajay Kumar P. | Freelance Web Developer</title>
+  <meta name="description" content="Freelance web developer building responsive, accessible, and visually engaging websites." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e1320;
+      --bg-alt: rgba(9, 14, 27, 0.6);
+      --surface: rgba(26, 31, 45, 0.7);
+      --surface-strong: rgba(26, 31, 45, 0.8);
+      --chip: rgba(37, 42, 56, 0.9);
+      --input: #090e1b;
+      --pill: #1a1f2d;
+      --text: #dee2f5;
+      --text-muted: #bdc8d1;
+      --text-dim: #87929a;
+      --cyan: #38bdf8;
+      --cyan-light: #8ed5ff;
+      --cyan-bright: #54ddfc;
+      --cyan-teal: #29c1df;
+      --violet: #d0bcff;
+      --violet-deep: #571bc1;
+      --dark-on-accent: #001e2c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-muted);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Page & ambient glows ---------- */
+    .page { position: relative; overflow: hidden; padding-top: 80px; }
+
+    .glow {
+      position: absolute;
+      border-radius: 9999px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-hero {
+      width: 850px; height: 550px; top: -160px; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(56, 189, 248, 0.1);
+      filter: blur(70px);
+    }
+    .glow-violet {
+      width: 600px; height: 600px; top: 1200px; left: -192px;
+      background: rgba(87, 27, 193, 0.15);
+      filter: blur(80px);
+    }
+    .glow-teal {
+      width: 700px; height: 700px; top: 2400px; right: -128px;
+      background: rgba(41, 193, 223, 0.1);
+      filter: blur(90px);
+    }
+    .glow-cyan {
+      width: 500px; height: 500px; top: 3745px; left: 33%;
+      background: rgba(56, 189, 248, 0.1);
+      filter: blur(75px);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+
+    section { position: relative; z-index: 1; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 40px 0 128px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+      align-items: center;
+    }
+    .hero-copy {
+      grid-column: 1 / span 7;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .hero-visual {
+      grid-column: 8 / span 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .badge-available {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(26, 31, 45, 0.8);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .dot-wrap { position: relative; width: 10px; height: 10px; }
+    .dot-wrap .ping {
+      position: absolute; inset: 0; border-radius: 9999px;
+      background: var(--cyan); opacity: 0.75;
+      animation: ping 1.8s cubic-bezier(0,0,0.2,1) infinite;
+    }
+    .dot-wrap .core {
+      position: absolute; inset: 0; border-radius: 9999px;
+      background: var(--cyan);
+      box-shadow: 0 0 12px rgba(56,189,248,0.9);
+    }
+    @keyframes ping {
+      75%, 100% { transform: scale(2); opacity: 0; }
+    }
+    .badge-available span {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--cyan-light);
+    }
+
+    h1.hero-title {
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      font-size: 64px;
+      line-height: 72px;
+      letter-spacing: -2.56px;
+      color: var(--text);
+      padding-right: 63px;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, var(--cyan-light), var(--cyan), var(--cyan-bright));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      line-height: 29.25px;
+      letter-spacing: -0.09px;
+      color: var(--text-muted);
+      max-width: 672px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 16px 40px;
+      border-radius: 12px;
+      font-family: "Inter", sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      line-height: 28px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
+      color: var(--dark-on-accent);
+      box-shadow: 0 0 15px rgba(56,189,248,0.4);
+    }
+    .btn-primary:hover { box-shadow: 0 0 22px rgba(56,189,248,0.6); }
+    .btn-ghost {
+      background: rgba(26, 31, 45, 0.7);
+      backdrop-filter: blur(6px);
+      color: var(--text);
+      font-weight: 500;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .btn-ghost:hover { background: rgba(37, 42, 56, 0.9); }
+    .btn svg { flex-shrink: 0; }
+
+    .stack { display: flex; flex-direction: column; gap: 4px; padding-top: 16px; }
+    .stack-label {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .stack-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: var(--chip);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.28px;
+      white-space: nowrap;
+    }
+
+    /* Laptop / mockup visual */
+    .mockup-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 466px;
+    }
+    .mockup-backdrop {
+      position: absolute;
+      width: 480px; height: 480px;
+      left: -7px; top: -63px;
+      border-radius: 9999px;
+      filter: blur(20px);
+      background: linear-gradient(45deg, rgba(56,189,248,0.2) 0%, rgba(87,27,193,0.2) 50%, rgba(41,193,223,0.1) 100%);
+      pointer-events: none;
+    }
+    .mockup-ring {
+      position: absolute;
+      inset: -53px 3px auto 3px;
+      height: 460px;
+      border-radius: 9999px;
+      background: rgba(22, 27, 41, 0.4);
+      pointer-events: none;
+    }
+    .mockup {
+      position: relative;
+      background: rgba(26, 31, 45, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 8px;
+      box-shadow: 0 24px 50px -12px rgba(0,0,0,0.8), 0 0 30px 0 rgba(56,189,248,0.25);
+    }
+    .mockup-screen {
+      position: relative;
+      background: #090e1b;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 337px;
+    }
+    .mockup-screen img {
+      position: absolute;
+      top: 0; left: -18.8%;
+      width: 137.6%; height: 100%;
+      object-fit: cover;
+      max-width: none;
+    }
+    .mockup-screen::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, #0e1320 0%, rgba(14,19,32,0) 50%);
+      opacity: 0.6;
+    }
+    .float {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37, 42, 56, 0.9);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      padding: 6px 12px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      white-space: nowrap;
+    }
+    .float-top-left { top: -16px; left: -16px; }
+    .float-bottom-right { bottom: -12px; right: -12px; }
+    .float-mid-right {
+      top: 50%; right: -24px;
+      transform: translateY(-50%);
+      background: rgba(48, 52, 67, 0.9);
+      border-radius: 8px;
+      padding: 4px 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+    }
+    .float .mono-strong {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.28px;
+    }
+    .float .mono-sub {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.28px;
+      color: var(--text-muted);
+    }
+    .float .mono-small {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.28px;
+    }
+
+    /* ---------- Section headers ---------- */
+    .section { padding: 128px 0; }
+    .section-alt { background: var(--bg-alt); }
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0;
+      max-width: 672px;
+      margin: 0 auto 40px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: var(--pill);
+      box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+      margin-bottom: 8px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 9999px;
+      background: var(--eyebrow-dot, var(--cyan-teal));
+    }
+    .eyebrow span {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--eyebrow-text, var(--cyan-bright));
+    }
+    h2.section-title {
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 52px;
+      letter-spacing: -1.32px;
+      color: var(--text);
+      padding-bottom: 4px;
+    }
+    .section-sub {
+      font-size: 16px;
+      line-height: 26px;
+      color: var(--text-muted);
+      margin-top: 0;
+    }
+
+    /* ---------- About ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+    .about-left {
+      grid-column: 1 / span 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .about-right {
+      grid-column: 6 / span 7;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .photo-card {
+      position: relative;
+      width: 380px;
+      max-width: 100%;
+      padding: 12px;
+      background: rgba(37, 42, 56, 0.8);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px 0 rgba(0,0,0,0.6), 0 0 24px 0 rgba(87,27,193,0.25);
+      z-index: 2;
+    }
+    .photo-frame {
+      position: relative;
+      background: #303443;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 356px;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-frame::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, #090e1b 0%, rgba(9,14,27,0) 50%);
+      opacity: 0.75;
+    }
+    .id-badge {
+      position: absolute;
+      bottom: -20px;
+      left: 5%;
+      right: 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+      border-radius: 12px;
+      background: rgba(48, 52, 67, 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+      z-index: 3;
+    }
+    .id-badge-left { display: flex; gap: 8px; align-items: center; }
+    .id-badge .dot { width: 10px; height: 10px; border-radius: 9999px; background: var(--cyan); }
+    .id-name { font-weight: 700; font-size: 16px; line-height: 20px; color: var(--text); }
+    .id-role {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.55px;
+      text-transform: uppercase;
+      color: var(--cyan-light);
+    }
+    .id-badge .wave { width: 18px; height: 18px; color: var(--cyan-light); }
+
+    .stats {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      max-width: 380px;
+    }
+    .stat {
+      flex: 1;
+      padding: 16px;
+      background: rgba(26, 31, 45, 0.6);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+    }
+    .stat-num {
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: -0.64px;
+    }
+    .stat-label { font-size: 14px; line-height: 22px; color: var(--text-muted); }
+
+    .strength {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px;
+      background: var(--surface);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .icon-tile {
+      width: 56px; height: 56px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
+    }
+    .icon-tile svg { width: 24px; height: 24px; }
+    .strength h3 {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: -0.36px;
+      color: var(--text);
+      padding-bottom: 4px;
+    }
+    .strength p { font-size: 16px; line-height: 26px; color: var(--text-muted); }
+
+    /* ---------- Services ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 40px;
+      background: rgba(26, 31, 45, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px 0 rgba(0,0,0,0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 14px 36px 0 rgba(0,0,0,0.4); }
+    .service-icon {
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .service-icon svg { width: 24px; height: 24px; }
+    .service-card h3 {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: -0.36px;
+      color: var(--text);
+      padding-bottom: 4px;
+    }
+    .service-card p {
+      font-size: 16px;
+      line-height: 26px;
+      color: var(--text-muted);
+      padding-bottom: 24px;
+    }
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.28px;
+    }
+    .service-link svg { width: 10px; height: 10px; }
+
+    /* ---------- FAQ ---------- */
+    .faq-stack { display: flex; flex-direction: column; gap: 8px; }
+    .faq-item {
+      background: var(--surface);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .faq-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 24px;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: -0.09px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .faq-toggle {
+      width: 32px; height: 32px;
+      flex-shrink: 0;
+      border-radius: 9999px;
+      background: #303443;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.25s ease;
+    }
+    .faq-toggle svg { width: 11px; height: 11px; color: var(--text-muted); }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 24px 16px;
+      font-size: 15px;
+      line-height: 24px;
+      color: var(--text-muted);
+    }
+    .faq-item.open .faq-answer { max-height: 240px; }
+
+    /* ---------- Contact ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+    .contact-left {
+      grid-column: 1 / span 5;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 40px;
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+    }
+    .contact-right {
+      grid-column: 6 / span 7;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 40px;
+      background: var(--surface-strong);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 16px 50px 0 rgba(0,0,0,0.5), 0 0 24px 0 rgba(56,189,248,0.18);
+    }
+    .contact-head { display: flex; flex-direction: column; gap: 4px; }
+    .contact-head h3 {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: -0.36px;
+      color: var(--text);
+    }
+    .contact-head p { font-size: 14px; line-height: 22px; color: var(--text-muted); }
+
+    .channels { display: flex; flex-direction: column; gap: 8px; }
+    .channel {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: rgba(37, 42, 56, 0.8);
+      border-radius: 12px;
+      transition: background 0.2s ease;
+    }
+    .channel:hover { background: rgba(50, 56, 72, 0.9); }
+    .channel-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .channel-icon svg { width: 18px; height: 18px; }
+    .channel-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.55px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      line-height: 16.5px;
+    }
+    .channel-value {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 22px;
+      color: var(--text);
+      word-break: break-all;
+    }
+
+    .guarantees { display: flex; flex-direction: column; gap: 4px; padding-top: 8px; }
+    .guarantee {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      background: var(--input);
+      border-radius: 8px;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.28px;
+      color: var(--text-muted);
+    }
+    .guarantee svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--cyan-light); margin-right: 8px; }
+
+    /* Inquiry form */
+    .form-title {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: -0.36px;
+      color: var(--text);
+    }
+    .form-desc { font-size: 14px; line-height: 22px; color: var(--text-muted); }
+
+    form#inquiry { display: flex; flex-direction: column; gap: 16px; padding-top: 16px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .field label {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .field input {
+      width: 100%;
+      background: var(--input);
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 10px 16px 11px;
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .field input::placeholder { color: var(--text-dim); }
+    .field input:focus {
+      border-color: rgba(56,189,248,0.6);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.15);
+    }
+    .field input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
+      color: var(--dark-on-accent);
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.2px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 0 12px rgba(56,189,248,0.35);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+    .submit-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 0 20px rgba(56,189,248,0.5); }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .submit-btn svg { width: 13px; height: 13px; }
+
+    .form-status {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 22px;
+    }
+    .form-status.show { display: block; }
+    .form-status.success {
+      background: rgba(41,193,223,0.12);
+      border: 1px solid rgba(41,193,223,0.4);
+      color: var(--cyan-bright);
+    }
+    .form-status.error {
+      background: rgba(255,107,129,0.1);
+      border: 1px solid rgba(255,107,129,0.4);
+      color: #ff9fb0;
+    }
+
+    /* ---------- Footer-ish spacing ---------- */
+    .page-end { height: 0; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1100px) {
+      .container { padding: 0 40px; }
+      h1.hero-title { font-size: 52px; line-height: 60px; letter-spacing: -2px; padding-right: 0; }
+    }
+
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      .section { padding: 96px 0; }
+      .hero { padding: 24px 0 96px; }
+
+      .hero-copy,
+      .hero-visual,
+      .about-left,
+      .about-right,
+      .contact-left,
+      .contact-right { grid-column: 1 / -1; }
+
+      .hero-visual { order: -1; }
+      .hero-visual .mockup-wrap { max-width: 420px; }
+      .mockup-screen { height: 280px; }
+      .mockup-screen img { left: -10%; width: 120%; }
+
+      h1.hero-title { font-size: 44px; line-height: 52px; letter-spacing: -1.5px; }
+      h2.section-title { font-size: 34px; line-height: 42px; letter-spacing: -1px; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .float-mid-right { right: -8px; }
+      .about-left { margin-bottom: 40px; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 18px; }
+      h1.hero-title { font-size: 36px; line-height: 44px; letter-spacing: -1px; }
+      .hero-desc { font-size: 16px; line-height: 26px; }
+      .btn { font-size: 17px; padding: 14px 26px; }
+      h2.section-title { font-size: 28px; line-height: 36px; }
+      .service-card { padding: 28px; }
+      .contact-left, .contact-right { padding: 28px; }
+      .form-row { grid-template-columns: 1fr; }
+      .stats { flex-direction: column; }
+      .photo-card { width: 100%; }
+      .id-badge { left: 4%; right: 4%; }
+      .float-top-left, .float-bottom-right { display: none; }
+      .strength { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Ambient glows -->
+    <div class="glow glow-hero" aria-hidden="true"></div>
+    <div class="glow glow-violet" aria-hidden="true"></div>
+    <div class="glow glow-teal" aria-hidden="true"></div>
+    <div class="glow glow-cyan" aria-hidden="true"></div>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="badge-available">
+              <div class="dot-wrap"><div class="ping"></div><div class="core"></div></div>
+              <span>Available for freelance projects</span>
+            </div>
+
+            <h1 class="hero-title">
+              Building Modern<br />
+              Websites That <span class="gradient-text">Make</span><br />
+              <span class="gradient-text">an Impact.</span>
+            </h1>
+
+            <p class="hero-desc">
+              I'm Ajay Kumar P., a freelance web developer passionate about building responsive, accessible, and visually engaging websites that help businesses establish a strong online presence.
+            </p>
+
+            <div class="cta-row">
+              <a href="#contact" class="btn btn-primary">
+                Hire Me
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+              </a>
+              <a href="#services" class="btn btn-ghost">
+                Explore My Work
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L9 3M4 3h5v5"/></svg>
+              </a>
+            </div>
+
+            <div class="stack">
+              <div class="stack-label">Core technical stack</div>
+              <div class="stack-chips">
+                <span class="chip" style="color:#8ed5ff;"><svg width="15" height="4" viewBox="0 0 15 4" fill="#8ed5ff"><rect width="15" height="4" rx="1"/></svg>HTML5</span>
+                <span class="chip" style="color:#8ed5ff;"><svg width="11" height="4" viewBox="0 0 11 4" fill="#8ed5ff"><rect width="11" height="4" rx="1"/></svg>CSS3</span>
+                <span class="chip" style="color:#d0bcff;"><svg width="7" height="4" viewBox="0 0 7 4" fill="#d0bcff"><rect width="7" height="4" rx="1"/></svg>JavaScript</span>
+                <span class="chip" style="color:#38bdf8;"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#38bdf8" stroke-width="1.2"><circle cx="6" cy="6" r="1.2" fill="#38bdf8"/><ellipse cx="6" cy="6" rx="5.2" ry="2.1"/><ellipse cx="6" cy="6" rx="5.2" ry="2.1" transform="rotate(60 6 6)"/><ellipse cx="6" cy="6" rx="5.2" ry="2.1" transform="rotate(-60 6 6)"/></svg>React</span>
+                <span class="chip" style="color:#54ddfc;"><svg width="13" height="10" viewBox="0 0 13 10" fill="#54ddfc"><rect width="13" height="10" rx="2"/></svg>Python</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="mockup-wrap">
+              <div class="mockup-backdrop" style="left:-7px; top:-63px;"></div>
+              <div class="mockup-ring"></div>
+
+              <div class="mockup">
+                <div class="mockup-screen">
+                  <img src="https://www.figma.com/api/mcp/asset/9e233116-67b9-47a3-bb9e-aadcbbe17702/31459.png" alt="Preview of a modern website design" />
+                </div>
+              </div>
+
+              <div class="float float-top-left" style="background:rgba(37,42,56,0.9);">
+                <span class="mono-strong" style="color:#38bdf8;">&lt;dev&gt;</span>
+                <span class="mono-sub">Architect</span>
+              </div>
+
+              <div class="float float-bottom-right">
+                <span class="mono-strong" style="color:#d0bcff;">⚡ fast</span>
+                <span class="mono-sub">99.8 Lighthouse</span>
+              </div>
+
+              <div class="float float-mid-right">
+                <span class="mono-small" style="color:#38bdf8;">{</span>
+                <span class="mono-small" style="color:#7bd0ff;">code: clean</span>
+                <span class="mono-small" style="color:#38bdf8;">}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section section-alt" id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow" style="--eyebrow-dot:#29c1df; --eyebrow-text:#54ddfc;"><span>About Me</span></div>
+          <h2 class="section-title">More Than Code — <span class="gradient-text" style="background:linear-gradient(90deg,#8ed5ff,#d0bcff);-webkit-background-clip:text;background-clip:text;">I Build</span> Experiences.</h2>
+          <p class="section-sub" style="margin-top:16px;">
+            I'm an aspiring web developer and Electronics and Communication Engineering student who enjoys turning ideas into practical digital experiences. I focus on responsive design, clean interfaces, and continuous learning to create websites that are useful, attractive, and easy to navigate.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-left">
+            <div class="photo-card">
+              <div class="photo-frame">
+                <img src="https://www.figma.com/api/mcp/asset/9e233116-67b9-47a3-bb9e-aadcbbe17702/12d64.png" alt="Ajay Kumar P., freelance web developer and ECE student" />
+              </div>
+              <div class="id-badge">
+                <div class="id-badge-left">
+                  <span class="dot"></span>
+                  <div>
+                    <div class="id-name">Ajay Kumar P.</div>
+                    <div class="id-role">Web Developer &amp; ECE Student</div>
+                  </div>
+                </div>
+                <svg class="wave" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13c2-3 4-3 6 0s4 3 6 0M3 8c2-3 4-3 6 0s4 3 6 0"/></svg>
+              </div>
+            </div>
+
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-num" style="color:#8ed5ff;">100%</div>
+                <div class="stat-label">Client Commitment</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num" style="color:#d0bcff;">B.E</div>
+                <div class="stat-label">ECE Academic Rigor</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-right">
+            <div class="strength">
+              <div class="icon-tile" style="background:rgba(56,189,248,0.15); box-shadow:0 0 16px rgba(56,189,248,0.25); color:#38bdf8;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
+              </div>
+              <div>
+                <h3>Creative Problem Solver</h3>
+                <p>I turn ideas into practical web solutions with intuitive workflows and clean technical architectures.</p>
+              </div>
+            </div>
+
+            <div class="strength">
+              <div class="icon-tile" style="background:rgba(41,193,223,0.15); box-shadow:0 0 16px rgba(41,193,223,0.25); color:#29c1df;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/></svg>
+              </div>
+              <div>
+                <h3>Responsive Web Design</h3>
+                <p>I create layouts that adapt seamlessly to different screen sizes, from mobile phones to ultrawide desktops.</p>
+              </div>
+            </div>
+
+            <div class="strength">
+              <div class="icon-tile" style="background:rgba(87,27,193,0.25); box-shadow:0 0 16px rgba(139,92,246,0.3); color:#d0bcff;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5-10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
+              </div>
+              <div>
+                <h3>Continuous Learner</h3>
+                <p>I keep improving my skills and exploring modern technologies to deliver high-performing, future-ready builds.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow" style="--eyebrow-dot:#38bdf8; --eyebrow-text:#8ed5ff;"><span>Services</span></div>
+          <h2 class="section-title">What I Can Build <span class="gradient-text" style="background:linear-gradient(90deg,#8ed5ff,#54ddfc);-webkit-background-clip:text;background-clip:text;">for You</span></h2>
+          <p class="section-sub" style="margin-top:16px;">I help individuals, startups, and small businesses create professional online experiences.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-icon" style="background:rgba(56,189,248,0.15); box-shadow:0 0 20px rgba(56,189,248,0.2); color:#38bdf8;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="13" rx="2"/><path d="M8 20.5h8M12 16.5v4"/></svg>
+              </div>
+              <h3>Business Websites</h3>
+              <p>Professional websites that build trust and introduce your business online with crystal-clear value propositions and polished credibility.</p>
+            </div>
+            <a href="#contact" class="service-link" style="color:#8ed5ff;">Discuss Your Project
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 8L8 2M3 2h5v5"/></svg>
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" style="background:rgba(41,193,223,0.15); box-shadow:0 0 20px rgba(41,193,223,0.2); color:#29c1df;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+              </div>
+              <h3>Landing Pages</h3>
+              <p>Attractive pages with clear messaging and strong calls to action engineered to convert traffic into qualified leads and engaged users.</p>
+            </div>
+            <a href="#contact" class="service-link" style="color:#54ddfc;">Discuss Your Project
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 8L8 2M3 2h5v5"/></svg>
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" style="background:rgba(87,27,193,0.2); box-shadow:0 0 20px rgba(139,92,246,0.25); color:#d0bcff;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h8"/></svg>
+              </div>
+              <h3>Portfolio Websites</h3>
+              <p>Personal websites that showcase your skills, projects, and achievements to captivate recruiters, investors, and potential clients.</p>
+            </div>
+            <a href="#contact" class="service-link" style="color:#d0bcff;">Discuss Your Project
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 8L8 2M3 2h5v5"/></svg>
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" style="background:rgba(56,189,248,0.15); box-shadow:0 0 20px rgba(56,189,248,0.2); color:#38bdf8;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>
+              </div>
+              <h3>Website Redesign</h3>
+              <p>Improve an existing website's appearance, usability, and responsiveness to bring outdated digital surfaces up to current industry benchmarks.</p>
+            </div>
+            <a href="#contact" class="service-link" style="color:#8ed5ff;">Discuss Your Project
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 8L8 2M3 2h5v5"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="section section-alt" id="faq">
+      <div class="container" style="max-width:880px;">
+        <div class="section-header">
+          <div class="eyebrow" style="--eyebrow-dot:#571bc1; --eyebrow-text:#d0bcff;"><span>FAQs</span></div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-sub" style="margin-top:16px;">Everything you need to know before starting your website project.</p>
+        </div>
+
+        <div class="faq-stack" id="faqStack">
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              What types of websites do you build?
+              <span class="faq-toggle"><svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5.5 1v9M1 5.5h9"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Business websites, landing pages, portfolio websites, and redesigns of existing sites, all built to be responsive and easy to use.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              How much does a website cost?
+              <span class="faq-toggle"><svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5.5 1v9M1 5.5h9"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Pricing depends on scope, number of pages, and features. Share your project details through the form and I'll send a tailored estimate.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Will my website work on mobile devices?
+              <span class="faq-toggle"><svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5.5 1v9M1 5.5h9"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes. Every site is built responsive from the start and tested across phones, tablets, and desktops.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Can you redesign an existing website?
+              <span class="faq-toggle"><svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5.5 1v9M1 5.5h9"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes. I can improve the appearance, usability, and responsiveness of an existing site while keeping what already works.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              How long will development take?
+              <span class="faq-toggle"><svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5.5 1v9M1 5.5h9"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Simple landing pages can take a few days, while larger business or portfolio sites usually take a few weeks. I'll confirm a timeline during our kickoff call.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              How can I hire you?
+              <span class="faq-toggle"><svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5.5 1v9M1 5.5h9"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Fill out the "Start Your Project" form below, or reach out directly by email, GitHub, or LinkedIn.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow" style="--eyebrow-dot:#29c1df; --eyebrow-text:#54ddfc;"><span>Get in Touch</span></div>
+          <h2 class="section-title">Let's Build <span class="gradient-text" style="background:linear-gradient(90deg,#8ed5ff,#d0bcff);-webkit-background-clip:text;background-clip:text;">Something Great.</span></h2>
+          <p class="section-sub" style="margin-top:16px;">Have a website idea? Tell me about your project, and let's discuss how I can help bring it to life.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: direct channels & guarantees -->
+          <div class="contact-left">
+            <div class="contact-head">
+              <h3>Direct Contact</h3>
+              <p>Prefer direct messaging? Reach out through any of these verified communication channels:</p>
+            </div>
+
+            <div class="channels">
+              <a class="channel" href="mailto:ajaykeerthana11@gmail.com">
+                <div class="channel-icon" style="background:rgba(56,189,248,0.2); color:#38bdf8;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                </div>
+                <div>
+                  <div class="channel-label">Email Address</div>
+                  <div class="channel-value">ajaykeerthana11@gmail.com</div>
+                </div>
+              </a>
+
+              <a class="channel" href="https://github.com/Ajay6361" target="_blank" rel="noopener">
+                <div class="channel-icon" style="background:rgba(87,27,193,0.25); color:#d0bcff;">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>
+                </div>
+                <div>
+                  <div class="channel-label">GitHub</div>
+                  <div class="channel-value">github.com/ajaykumar</div>
+                </div>
+              </a>
+
+              <a class="channel" href="https://www.linkedin.com/in/ajay-kumar-4011432b9/" target="_blank" rel="noopener">
+                <div class="channel-icon" style="background:rgba(41,193,223,0.2); color:#29c1df;">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3.5A1.5 1.5 0 1 1 4 6.5a1.5 1.5 0 0 1 0-3zM3 9h3v12H3zM9 9h2.9v1.7h.1c.4-.8 1.4-1.7 2.9-1.7 3.1 0 3.7 2 3.7 4.7V21h-3v-6.4c0-1.5 0-3.5-2.1-3.5s-2.5 1.7-2.5 3.4V21H9z"/></svg>
+                </div>
+                <div>
+                  <div class="channel-label">LinkedIn</div>
+                  <div class="channel-value">linkedin.com/in/ajaykumar</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="guarantees">
+              <div class="guarantee">
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5.5"/><path d="M7 4v3l2 1.5"/></svg>
+                Replies within 24 hours guaranteed
+              </div>
+              <div class="guarantee">
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5.5"/><path d="M1.5 7h11M7 1.5c2 2.2 2 8.8 0 11M7 1.5c-2 2.2-2 8.8 0 11"/></svg>
+                Available globally • Indian Standard Time (IST)
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: inquiry form -->
+          <div class="contact-right">
+            <h3 class="form-title">Start Your Project</h3>
+            <p class="form-desc">Fill out this brief form, and I'll review your project details before our kickoff call.</p>
+
+            <form id="inquiry" novalidate>
+              <div class="form-row">
+                <div class="field">
+                  <label for="name">Full Name *</label>
+                  <input id="name" name="name" type="text" placeholder="e.g. Alex Morgan" autocomplete="name" required />
+                </div>
+                <div class="field">
+                  <label for="email">Email Address *</label>
+                  <input id="email" name="email" type="email" placeholder="alex@company.com" autocomplete="email" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" placeholder="e.g. +91 98765 43210" autocomplete="tel" />
+              </div>
+
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+
+              <button type="submit" class="submit-btn" id="submitBtn">
+                Send Project Inquiry
+                <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M7 2.5l4 4-4 4"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // ----- Config -----
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyKlg6JS99IZKmOqhxrbNoVzwPzCuPHVaDfVtA6xFo7gIBBolm4wY31jInoZdgSkhRr/exec";
+
+    // ----- FAQ accordion -----
+    document.querySelectorAll("#faqStack .faq-item").forEach(function (item) {
+      const btn = item.querySelector(".faq-btn");
+      btn.addEventListener("click", function () {
+        const isOpen = item.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(isOpen));
+      });
+    });
+
+    // ----- Inquiry form -----
+    const form = document.getElementById("inquiry");
+    const submitBtn = document.getElementById("submitBtn");
+    const statusEl = document.getElementById("formStatus");
+
+    function setStatus(type, message) {
+      statusEl.className = "form-status show " + type;
+      statusEl.textContent = message;
+    }
+
+    function showSuccess() {
+      setStatus("success", "Thanks! Your inquiry has been sent. I'll be in touch within 24 hours.");
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.firstChild.textContent = "Send Project Inquiry ";
+    }
+
+    function showError() {
+      setStatus("error", "Something went wrong while sending your inquiry. Please try again, or email ajay@ajay.dev directly.");
+      submitBtn.disabled = false;
+      submitBtn.firstChild.textContent = "Send Project Inquiry ";
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+      if (!name || !email) {
+        setStatus("error", "Please enter your name and email address.");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.firstChild.textContent = "Sending... ";
+      statusEl.className = "form-status";
+
+      const url = SCRIPT_URL + "?" + new URLSearchParams({ name: name, email: email, phone: phone });
+
+      fetch(url, { method: "GET", mode: "no-cors" })
+        .then(() => showSuccess())
+        .catch(() => showError());
+    });
+  </script>
+</body>
+</html>
